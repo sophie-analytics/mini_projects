@@ -1,48 +1,45 @@
-#!/usr/bin/python3
-"""A class module that defines a players of the game  """
-
-class Rule():
-    exit_msg = """
-    Would you like to continue playing this game?
-        Select 1 - Yes
-        Select 2 - No
-    """
-    def __init__(self):
-        self.players_input = []
+# #!/usr/bin/python3
+class Player:
+    """ The player class should be able to play the game, choose a winner, keep scores"""
+    def __init__(self, player_input: list):
+        """ Initialize with the choice of input """
+        self.player_input = [player_input]
         self.scores = {
-           "player1": {"win": 0, "loss": 0},
-            "player2":  {"win": 0, "loss": 0}, 
-            "draw": 0
+        "player1": {"win": 0, "loss": 0},
+        "player2":  {"win": 0, "loss": 0}, 
+        "draw": 0
         }
 
-    def add_player(self, player_input):
-        self.players_input.append(player_input)
-
-    def rule(self):
+    def player2_input(self, player2_input: str):
+        """ Collects the second player's input """
+        self.player_input.append(player2_input)
+    
+    def result(self):
+        """ Act as a judge and selects the winner and loser"""
         if (
-            (self.players_input[0] == "paper" and self.players_input[1] == "rock") or 
-            (self.players_input[0] == "rock" and self.players_input[1] == "scissors") or
-            (self.players_input[0] == "scissors" and self.players_input[1] == "paper")
-         ) :
+            (self.player_input[0] == "paper" and self.player_input[1] == "rock") or 
+            (self.player_input[0] == "rock" and self.player_input[1] == "scissors") or
+            (self.player_input[0] == "scissors" and self.player_input[1] == "paper")
+            ) :
             self.scores['player1']['win'] += 1
             return 'Player 1 Wins!'
 
         elif (
-            (self.players_input[1] == "paper" and self.players_input[0] == "rock") or 
-            (self.players_input[1] == "rock" and self.players_input[0] == "scissors") or
-            (self.players_input[1] == "scissors" and self.players_input[0] == "paper")
-         ) :
+            (self.player_input[1] == "paper" and self.player_input[0] == "rock") or 
+            (self.player_input[1] == "rock" and self.player_input[0] == "scissors") or
+            (self.player_input[1] == "scissors" and self.player_input[0] == "paper")
+            ) :
             self.scores['player2']['win'] += 1
             return 'Player 2 Wins!'
-        elif (self.players_input[0] == self.players_input[1]):
+
+        elif (self.player_input[0] == self.player_input[1]):
             self.scores['draw'] += 1
             return 'No Winner'
-
-    def display_scores(self):
-        for player, scores in self.scores.items():
-            if player != "draw":
-                print(f"{player}: Wins - {scores['win']}, Losses - {scores['loss']}")
+        
+    def final_scores(self):
+        """ Prints the final scores"""
+        for player, score in self.scores.items():
+            if player != 'draw':
+                print(f"{player} - Wins - {score['win']} Loss - {score['loss']}")
             else:
-                print(f"draws - {scores}")
-    def exit(self):
-        print(Rule.exit_msg)
+                print(f"Draw - {score}")
