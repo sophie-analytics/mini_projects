@@ -5,12 +5,12 @@ class Key:
         self.special_character = special_character
 
 class Keyboard:
-    def __init__(self, colour: str, backlit: bool, language: str, numlock: bool, keys: Key):
+    def __init__(self, colour: str, backlit: bool, language: str, numlock: bool, keys: list(Key)):
         self.colour = colour
         self.backlit = backlit
         self.language = language
         self.numlock = numlock
-        self.key = keys
+        self.keys = keys
 
 class Screen:
     def __init__(self, size: float, touch_screen: bool, type: str):
@@ -37,3 +37,16 @@ class Laptop:
 
 def run():
     dell = Laptop("dell", "Elitebook", "dell", "black", Keyboard("black", True, "English", True, Key("black", "array", ))
+
+
+
+
+
+
+
+
+
+
+# How to access attributes
+# How to modify attributes
+# How to connect everything together 
