@@ -29,14 +29,13 @@ while True:
         choice = input(">>> ")
 
         if i <= 0:
+                if choice == '3':
+                       break
                 player1 = Player(input("Enter your name:  "))
                 if choice == "1":
                         player2 = Player("Computer")
-
                 elif choice == "2":
                         player2 = Player(input("Enter yor name:  "))
-                elif choice == "3":
-                        break
                 else:
                         print("[You have not provided a valid input]")
                         continue
