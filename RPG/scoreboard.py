@@ -1,27 +1,25 @@
 # #!/usr/bin/python3
-from game import Game
-from players import Player
 
 class ScoreBoard:
     """ class that keeps and update the scores"""
-    def __init__(self):
+    def __init__(self, game_instance: object):
+        self.game = game_instance
         self.scores = {
-        f"{Player.players_name[0]}": {"win": 0, "loss": 0},
-        f"{Player.players_name[1]}":  {"win": 0, "loss": 0}, 
+        f"{self.game.players[0].get_name()}": {"win": 0, "loss": 0},
+        f"{self.game.players[1].get_name()}":  {"win": 0, "loss": 0}, 
         "draw": 0
         }
-       
-    def update_scores(self):
-        """ Update the scores based on outcome from the game class """
-        if Game.result['winner'] == 0:
-            self.scores[f'{Player.players_name[0]}']['win'] += 1
-            self.scores[f'{Player.players_name[1]}']['loss'] += 1
-        elif Game.result['winner'] == 1:
-            self.scores[f'{Player.players_name[1]}']['win'] += 1
-            self.scores[f'{Player.players_name[0]}']['loss'] += 1
-        elif Game.result['draw'] == 2:
+
+    def update_scores(self, winner):
+        """ updates the scores"""
+        if winner == f"{self.game.players[0].get_name()} Wins":
+            self.scores[f'{self.game.players[0].get_name()}']['win'] += 1
+            self.scores[f'{self.game.players[1].get_name()}']['loss'] += 1
+        elif winner == f"{self.game.players[1].get_name()} Wins":
+            self.scores[f'{self.game.players[1].get_name()}']['win'] += 1
+            self.scores[f'{self.game.players[0].get_name()}']['loss'] += 1
+        elif winner == 'No Winner':
             self.scores['draw'] += 1
-   
     def display_scores(self):
         """ Displays the scores and personalized it with each player's name"""
         for player, score in self.scores.items():
