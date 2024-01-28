@@ -31,10 +31,11 @@ while True:
         if i <= 0:
                 if choice == '3':
                        break
-                player1 = Player(input("Enter your name:  "))
                 if choice == "1":
+                        player1 = Player(input("Enter your name:  "))
                         player2 = Player("Computer")
                 elif choice == "2":
+                        player1 = Player(input("Enter your name:  "))
                         player2 = Player(input("Enter yor name:  "))
                 else:
                         print("[You have not provided a valid input]")
